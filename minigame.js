@@ -178,6 +178,7 @@ function removeHealt(voedingsstof,damage){
     }
     
     $(".box").hide();
+    returnFromMinigame(score);
   }
 }
 

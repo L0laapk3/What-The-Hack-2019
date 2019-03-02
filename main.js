@@ -25,18 +25,42 @@ function loadFarm() {
 }
 
 
+let cash = 340;
+function updateCash(change) {
+	cash += change;
+	let span = $("coins div span").text(cash + "€");
+
+	let flying = $("<flying>" + (change > 0 ? "+" : "-") + Math.abs(change) + "€</flying>").css({
+		position: "fixed",
+		color: change > 0 ? "green" : "red",
+		right: window.innerWidth - span.offset().left - span.width() + "px",
+		top: "1vw"
+	});
+
+	flying.prependTo(span.parent());
+
+	flying.animate({
+		opacity: 0,
+		top: "-1vw"
+	}, {
+		duration: 400,
+		done: flying.remove
+	});
+}
+
+
 loadFarm();
 
 function setUpdatePlant(plant) {
 	let soort = plant[0].dataset.soort;
-	setTimeout(() => updatePlant(plant, (parseInt(plant[0].dataset.stadium) || 0) + 1), alleSoorten[soort].snelheid);
+	setTimeout(() => updatePlant(plant, (parseInt(plant[0].dataset.stadium) || 0) + 1), Math.floor((0.8*Math.random()+0.6)*alleSoorten[soort].snelheid));
 }
-function updatePlant(plant, stadium) {
+function updatePlant(plant, stadium, noUpdate) {
 	stadium = parseInt(stadium);
 	let soort = plant[0].dataset.soort;
 	plant.children("img").attr("src", "img/" + soort + "/" + stadium + ".png");
 	plant[0].dataset.stadium = stadium;
-	if (alleSoorten[soort].stadia > stadium)
+	if (alleSoorten[soort].stadia > stadium && !noUpdate)
 		setUpdatePlant(plant);
 }
 
@@ -44,14 +68,17 @@ function newPlant(soort) {
 	return $("<plant data-soort='" + soort + "'><img src='img/" + soort + "/1.png'>");
 }
 
+
+function terug() {
+	$("farm-multi-hitbox").remove();
+	$("farm").removeClass("outline grid");
+	$("farm").off("click");
+	$("#mainControls").css("display", "");
+	$("#annuleerControls").css("display", "none");
+}
 function openAnnuleerControls() {
 	$("#mainControls").css("display", "none");
-	$("#annuleerControls").css("display", "").on("click", () => {
-		$("farm").removeClass("outline");
-		$("farm").off("click");
-		$("#mainControls").css("display", "");
-		$("#annuleerControls").css("display", "none")
-	});
+	$("#annuleerControls").css("display", "").on("click", terug);
 }
 
 
@@ -62,7 +89,8 @@ $(".knop-zaaien").each(function(_, knop) {
 	let stadia = parseInt(knop.dataset.stadia);
 	alleSoorten[soort] = {
 		snelheid: snelheid,
-		stadia: stadia
+		stadia: stadia,
+		winst: knop.dataset.winst,
 	};
 
 	$(knop).on("click", function(ev) {
@@ -70,12 +98,12 @@ $(".knop-zaaien").each(function(_, knop) {
 
 		$("farm").on("click", "farm-background-tile", function(ev) {
 			let tile = $(ev.target);
-			if (!tile.hasClass("farmland"))
+			if (!tile.hasClass("farmland") && !knop.dataset.ongrass)
 				return;
 			if (tile.children().length > 0)
 				return;
 
-			let plant = newPlant(soort);
+			let plant = newPlant(soort).css("zIndex", tile.index() + tile.parent().index());
 			tile.append(plant);
 	
 			setUpdatePlant(plant);
@@ -120,14 +148,15 @@ $("#knop-oogsten").on("click", (ev) => {
 			return;
 
 		
+		updateCash(parseInt(alleSoorten[soort].winst));
+
 		if (soort == "appel") {
-			if (!(plant[0].dataset.aantalGeoogst > 5)) {
 
-				updatePlant(plant, alleSoorten.appel.stadia - 1);
+			updatePlant(plant, alleSoorten[soort].stadia - 1, true);
+			setTimeout(() => updatePlant(plant, alleSoorten[soort].stadia), (0.8*Math.random()+0.6)*alleSoorten[soort].stadia * alleSoorten[soort].snelheid / 2);
 
-				plant[0].dataset.aantalGeoogst = (parseInt(plant[0].dataset.aantalGeoogst) || 0) + 1;
-				return;
-			}
+			plant[0].dataset.aantalGeoogst = (parseInt(plant[0].dataset.aantalGeoogst) || 0) + 1;
+			return;
 
 		}
 
@@ -147,8 +176,20 @@ $("#knop-slopen").on("click", (ev) => {
 
 	$("farm").on("click", "farm-background-tile", function(ev) {
 		let tile = $(ev.target);
-		if (tile.children("plant").length == 0)
+		if (tile.children().length == 0)
 			return;
+
+		let multistr = tile.children("multistructure");
+		if (multistr.length > 0)
+			tile = $("farm > farm-background-row:nth-child(" + multistr[0].dataset.x + ") > farm-background-tile:nth-child(" + multistr[0].dataset.y + ")");
+
+
+		let schuur = tile.children("schuur");
+		if (schuur.length > 0) {
+			let index = tile.index();
+			let pIndex = tile.parent().index();
+			$("multistructure[data-x='" + (pIndex+1) + "'][data-y='" + (index+1) + "']").remove();
+		}
 
 		tile.children().remove();
 		
@@ -166,7 +207,39 @@ $("#knop-ploegen").on("click", (ev) => {
 
 	$("farm").on("click", "farm-background-tile", function(ev) {
 		let tile = $(ev.target);
-		tile.addClass("farmland");
+		if (tile.children().length == 0)
+			tile.addClass("farmland");
+		
+	});
+
+	openAnnuleerControls();
+
+});
+
+
+function addOffTiles() {
+	return $("farm-background-row:not(:first-child):not(:last-child) > farm-background-tile:not(:first-child):not(:last-child)").append("<farm-multi-hitbox class='isometric h3 w3'>");
+}
+
+$("#knop-bouwen").on("click", (ev) => {
+	$("farm").addClass("grid");
+	addOffTiles();
+
+	$("farm").on("click", "farm-multi-hitbox", function(ev) {
+		let hitbox = $(ev.target);
+		let center = hitbox.parent();
+		let index = center.index();
+		let prevRow = center.parent().prev().children();
+		let nextRow = center.parent().next().children();
+		let tiles = [prevRow.eq(index - 1), prevRow.eq(index), prevRow.eq(index + 1), center.prev(), center, center.next(), nextRow.eq(index - 1), nextRow.eq(index), nextRow.eq(index + 1)];
+		console.log(window.a = tiles);
+		if (tiles.every(tile => !tile.hasClass("farmland") && tile.children(":not('farm-multi-hitbox')").length == 0)) {
+			terug();
+			schuur = $("<schuur><img src='img/schuur.png'/>").css("zIndex", index + center.parent().index());
+			tiles.shift().append(schuur);
+			for (let tile of tiles)
+				tile.append("<multistructure data-x='" + center.parent().index() + "' data-y='" + index + "'>");
+		}
 		
 	});
 

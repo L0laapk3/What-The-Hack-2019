@@ -5,6 +5,7 @@
 * {
 	margin: 0;
 	user-select: none; 
+	-webkit-user-drag: none;
 }
 
 body {
@@ -52,24 +53,27 @@ farm-background-tile {
 farm-background-tile.farmland {
 	background-image: url("img/dirt2.png");
 }
+farm.grid farm-background-tile,
 farm.outline farm-background-tile {
 	cursor: pointer;
 }
-farm.outline farm-background-tile::after {
+farm.grid farm-background-tile::before,
+farm.outline farm-background-tile::before {
 	content: "";
 	border: solid black 0.01vw;
-    width: 100%;
-    height: 100%;
+    width: var(--tileSize);
+    height: var(--tileSize);
 	display: block;
 	box-sizing: border-box;
+	position: absolute;
 }
 
 
-farm.outline farm-background-tile:hover::after {
+farm.outline farm-background-tile:hover::before {
 	border-width: 0.3vw;
 }
 
-farm-background-tile > * {
+farm-background-tile > *:not(.isometric) {
 	transform-origin: top left;
     transform: rotateZ(45deg) rotateX(-60deg) rotateZ(-90deg) scale(1.4);
     display: block;
@@ -86,30 +90,73 @@ farm-background-tile > * {
 
 
 
-topControls {
+topLeftControls {
 	position: absolute;
 	top: 0;
 	margin-top: 2vw;
 	margin-left: 2vw;
 }
-img#avatar {
+avatar profile {
 	width: 8vw;
 	height: 8vw;
     background-color: #ef7171;
     border-radius: 5vw;
     border: solid 1vw #d93838;
 }
-div#level {
-	width: 4vw;
-	height: 4vw;
+avatar profile img {
+	width: 8vw;
+	height: 8vw;
+    background-color: #ef7171;
+    border-radius: 5vw;
+    border: solid 1vw #d93838;
+}
+avatar #level {
+	width: 2.5vw;
+	height: 2.5vw;
 	border-radius: 2vw;
-	background-color: #ffc61b;
+    border: solid 0.75vw #ffc61b;
+	background-color: #fee187;
 	position: absolute;
 	top: -1vw;
 	right: -1vw;
-	line-height: 4.1vw;
+	line-height: 2.6vw;
 	text-align: center;
 	font-weight: bolder;
+	border-right: solid 0.75vw limegreen;
+}
+avatar #level:before {content: "";
+    position: absolute;
+    border: solid 0.75vw transparent;
+    border-right: solid 0.75vw limegreen;
+    width: 2.5vw;
+    height: 2.5vw;
+    border-radius: 2vw;
+    transform: rotateZ(-45deg);
+    top: -.75vw;
+    left: -.75vw;
+}
+
+
+topRightControls {
+	position: absolute;
+	top: 0;
+	right: 2vw;
+	margin-top: 2vw;
+}
+coins {
+	position: absolute;
+	right: 0;
+}
+coins div {
+	width: 8vw;
+	height: 8vw;
+    border: solid 1vw #ffc61b;
+	background-color: #fee187;
+    border-radius: 5vw;
+    line-height: 8vw;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 2.5vw;
 }
 
 
@@ -136,7 +183,14 @@ control {
 	cursor: pointer;
 }
 
-control > img {
+control > div {
+	width: 6vw;
+	height: 5vw;
+	margin: auto;
+    margin-top: 0.5vw;
+}
+
+control img {
     max-width: 6vw;
     max-height: 5vw;
 }
@@ -180,4 +234,80 @@ plant img[src$="appel/4.png"] {
 }
 plant img[src$="appel/5.png"] {
     margin: 1px -19px;
+}
+
+
+
+
+
+farm-multi-hitbox.h2.w2 {
+    width: var(--tileSize);
+    height: var(--tileSize);
+    display: block;
+    margin-top: calc(var(--tileSize)/2);
+	margin-left: calc(var(--tileSize)/2);
+	cursor: pointer;
+	position: relative;
+    z-index: 1;
+}
+farm-multi-hitbox.h2.w2:hover::before {
+    content: "";
+    outline: solid black 0.3vw;
+    padding: solid transparent var(--tileSize);
+    width: calc(var(--tileSize)*2);
+    height: calc(var(--tileSize)*2);
+    transform: translate(-25%, -25%);
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+	pointer-events: none;
+}
+
+
+farm-background-tile:first-child farm-multi-hitbox.h2.w2 {
+    padding-left: calc(var(--tileSize)/2);
+    margin-left: 0;
+}
+farm-background-tile:nth-last-child(2) farm-multi-hitbox.h2.w2 {
+    width: calc(var(--tileSize)*3/2);
+}
+farm-background-row:first-child farm-multi-hitbox.h2.w2 {
+    padding-top: calc(var(--tileSize)/2);
+    margin-top: 0;
+}
+farm-background-row:nth-last-child(2) farm-multi-hitbox.h2.w2 {
+    height: calc(var(--tileSize)*3/2);
+}
+
+
+
+
+
+farm-multi-hitbox.h3.w3 {
+    width: calc(var(--tileSize)*2);
+    height: calc(var(--tileSize)*2);
+    display: block;
+	cursor: pointer;
+	position: relative;
+    z-index: 1;
+}
+farm-multi-hitbox.h3.w3:hover::before {
+    content: "";
+    outline: solid black 0.3vw;
+    padding: solid transparent var(--tileSize);
+    width: calc(var(--tileSize)*3);
+	height: calc(var(--tileSize)*3);
+	transform: translate(calc(-100%/3), calc(-100%/3));
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+	pointer-events: none;
+}
+
+
+
+
+schuur img {
+	width: calc(var(--tileSize)*2.8*2);
+    transform: translate(-50%, -54%);
 }

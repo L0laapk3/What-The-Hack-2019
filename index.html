@@ -10,27 +10,36 @@
 
 		<link rel="stylesheet" href="style.css">
 
+		<script src="jquery-3.3.1.min.js"></script>
 	</head>
 
 	<body>
 
-		<main-screen>
-			<farm-container id="farmContainer"></farm-container>
+		<img class="bg" src="img/bg.jpg"/>
+
+		<farm-container id="farmContainer"></farm-container>
 			
-			<bottomControls>
-				<control>Place</control>
-				<control>Remove</control>
-			</bottomControls>
+		<bottomControls>
+			<controlGroup id="mainControls">
+				<control class="knop-zaaien" data-plant="tomaat" data-snelheid="1000" data-stadia="6"><img src="img/tomaat/thumb.png"/>Zaaien</control>
+				<control class="knop-zaaien" data-plant="wheat" data-snelheid="5000" data-stadia="6"><img src="img/wheat/thumb.png"/>Zaaien</control>
+				<control class="knop-zaaien" data-plant="appel" data-snelheid="3000" data-stadia="5"><img src="img/appel/thumb.png"/>Zaaien</control>
+				<control id="knop-oogsten">Oogsten</control>
+				<control id="knop-bouwen">Bouwen</control>
+				<control id="knop-slopen">Slopen</control>
+			</controlGroup>
+			<controlGroup id="annuleerControls" style="display: none">
+				<control id="knop-annuleer">Terug</control>
+			</controlGroup>
+		</bottomControls>
 
-		</main-screen>
 
 
 
 
 
 
-
-
+		
 		<script src="main.js"></script>
 
 

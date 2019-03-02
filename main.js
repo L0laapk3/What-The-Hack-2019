@@ -1,6 +1,6 @@
 function loadFarm() {
-	let width = 6;
-	let height = 6;
+	let width = 9;
+	let height = 9;
 
 
 
@@ -23,3 +23,45 @@ function loadFarm() {
 
 
 loadFarm();
+
+
+
+function newPlant(soort) {
+	return $("<plant><img src='img/" + soort + "/1.png'>");
+}
+
+
+$(".knop-zaaien").each(function(_, knop) {
+	$(knop).on("click", function(ev) {
+		$("farm").addClass("outline");
+		let soort = knop.dataset.plant;
+		let snelheid = parseInt(knop.dataset.snelheid);
+		let stadia = parseInt(knop.dataset.stadia);
+
+		$("farm").on("click", "farm-background-tile", function(ev) {
+			let tile = $(ev.target);
+			if (tile.children().length > 0)
+				return;
+
+			let plant = newPlant(soort);
+			tile.append(plant);
+	
+			for (let i = 1; i < stadia; i++)
+				setTimeout(() => plant.children("img").attr("src", "img/" + soort + "/" + (i+1) + ".png"), i * snelheid);
+			
+		});
+
+		$("#mainControls").css("display", "none");
+		$("#annuleerControls").css("display", "").on("click", () => {
+			$("farm").removeClass("outline");
+			$("farm").off();
+			$("#mainControls").css("display", "");
+			$("#annuleerControls").css("display", "none")
+		});
+
+
+		$("#knop-oogsten").on("click", (ev) => {
+
+		});
+	});
+});

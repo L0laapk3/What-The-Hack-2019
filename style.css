@@ -1,9 +1,10 @@
 :root {
-	--tileSize: 6vw;
+	--tileSize: 10vw;
 }
 
 * {
 	margin: 0;
+	user-select: none; 
 }
 
 body {
@@ -17,6 +18,7 @@ farm {
 	transform: rotateX(60deg) rotateZ(45deg);
 	margin: 0 auto;
 	width: auto;
+	position: relative;
 }
 
 farm-background-row {
@@ -28,17 +30,21 @@ farm-background-row {
 }
 
 farm-background-tile {
-	background-image: url("img/grass.png");
+	background-image: url("img/dirt2.png");
 	width: var(--tileSize);
 	height: var(--tileSize);
 	display: inline-block;
 }
+farm.outline farm-background-tile {
+	cursor: pointer;
+}
 farm.outline farm-background-tile::after {
 	content: "";
-	border: solid black 0.1vw;
+	border: solid black 0.01vw;
     width: 100%;
     height: 100%;
-    display: block;
+	display: block;
+	box-sizing: border-box;
 }
 
 
@@ -46,27 +52,30 @@ farm.outline farm-background-tile:hover::after {
 	border-width: 0.3vw;
 }
 
-
+farm-background-tile > * {
+	transform-origin: top left;
+    transform: rotateZ(45deg) rotateX(-60deg) rotateZ(-90deg) scale(1.4);
+    display: block;
+    position: absolute;
+    margin-top: 8vw;
+	margin-left: 8vw;
+	pointer-events: none;
+}
 
 
 
 
 bottomControls {
-	width: 100%;
-	height: 8vw;
 	position: absolute;
 	bottom: 0;
 	font-size: 1vw;
-	user-select: none; 
+	margin-bottom: 1vw;
 }
 
-control:first-child {
-	margin: 1vw;
-}
 control {
-	margin: 1vw 1vw 1vw 0;
-	width: 6vw;
-	height: 6vw;
+	margin-left: 1vw;
+	width: 8vw;
+	height: 8vw;
 	display: inline-block;
 	background-color: lightgrey;
 	border: 0.5vw solid grey;
@@ -74,6 +83,49 @@ control {
 	box-sizing: border-box;
 	text-align: center;
 	vertical-align: text-bottom;
-	line-height: 9vw;
 	cursor: pointer;
+}
+
+control > img {
+    max-width: 6vw;
+    max-height: 5vw;
+}
+
+.bg {
+	min-width: 100%;
+	min-height: 100%;
+	position: absolute;
+}
+
+
+
+plant img {
+	transform: translate(-50%, 0);
+	bottom: 0;
+	position: absolute;
+}
+
+
+plant img[src$="tomaat/2.png"] {
+    margin: 2px 2px;
+}
+plant img[src$="tomaat/3.png"] {
+    margin: 6px 2px;
+}
+plant img[src$="tomaat/4.png"] {
+    margin: 8px 0px;
+}
+plant img[src$="tomaat/5.png"] {
+    margin: 2px 2px;
+}
+plant img[src$="tomaat/6.png"] {
+    margin: 8px -3px;
+}
+
+
+
+
+plant img[src$="appel/4.png"],
+plant img[src$="appel/5.png"] {
+    margin: 0 -19px;
 }

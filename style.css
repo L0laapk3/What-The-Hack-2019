@@ -178,11 +178,12 @@ foodTipsRight {
 
 foodTipsInfo {
 	border-bottom: solid 1vw #d93838;
-	height: 62%;
+	height: 56%;
 	width: calc(100% - 8vw);
 	display: block;
 	white-space: initial;
 	padding: 4vw;
+	overflow-y: auto;
 }
 foodTipsInfo span {
 	font-weight: bolder;
@@ -196,8 +197,28 @@ foodTipsInfo img {
 }
 foodTipsSliders {
 	height: calc(38% - 1vw);
-	width: 100%;
+	width: calc(100% - 1vw);
 	display: block;
+	padding: 0.5vw;
+}
+foodTipsSliders slider {
+	width: 45%;
+	display: inline-block;
+	margin: 0.5vw 2.5%;
+}
+foodTipsSliders slider.small {
+	width: calc(45% - 5vw);
+}
+
+
+
+
+minigameReturn {
+	display: none;
+	font-weight: bolder;
+	font-size: 2.5vw;
+	line-height: 8vw;
+	padding: 0 4vw;
 }
 
 

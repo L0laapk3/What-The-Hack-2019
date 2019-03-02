@@ -116,17 +116,49 @@ $(".knop-zaaien").each(function(_, knop) {
 
 
 
-function returnFromMinigame(score) {
+
+function popupBackdrop() {
 
 }
 
 
+
+$("#level").on("click", (ev) => {
+	if ($("profile").hasClass("opened"))
+		return;
+	$("profile").addClass("opened")
+	startGame();
+});
+function returnFromMinigame(score) {
+	$("profile").addClass("opened");
+	$("foodtips").css("display", ""); //you never know
+
+	$("profile").addClass("opened").css({
+		width: "54vw",
+		height: ""
+	});
+	$("minigameReturn").css("display", "block").text("Je hebt " + score * 10 + " xp verdiend. Proficiat!");
+	setTimeout(() => {
+		$("profile").css("width", "");
+		setTimeout(() => {
+			$("profile").removeClass("opened");
+			$("minigameReturn").css("display", "")
+		}, 1000);
+	}, 3000);
+}
+
+
+
 $("avatar profile > img").on("click", (ev) => {
-	$("foodtips").css("display", "block");
-	$("profile").addClass("Opened").css({
+	if ($("profile").hasClass("opened"))
+		return;
+	$("profile").addClass("opened").css({
 		width: "58vw",
 		height: "58vw"
 	});
+	$("foodtips").css("display", "block");
+	
+	popupBackdrop();
 });
 
 

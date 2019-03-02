@@ -1,24 +1,27 @@
 function loadFarm() {
-	let width = 10;
-	let height = 10;
+	let size = 10;
 
 
 
 	let farm = document.createElement("farm");
-	let bg = document.createElement("farm-background");
-	farm.appendChild(bg);
-	for (let i = 0; i < width; i++) {
+	for (let i = 0; i < size; i++) {
 		let row = document.createElement("farm-background-row");
-		for (let j = 0; j < height; j++) {
+		for (let j = 0; j < size; j++) {
 			let tile = document.createElement("farm-background-tile");
 			row.appendChild(tile);
 		}
-		bg.appendChild(row);
+		farm.appendChild(row);
 
 	}
-	let farmContainer = document.getElementById("farmContainer");
-	console.log(farmContainer);
-	farmContainer.appendChild(farm);
+	let farmContainer = $("#farmContainer");
+	farmContainer.append(farm);
+	let scrollContainer = $("#farmScrollContainer");
+
+	// let squareSize = window.innerWidth * 10 / 100 * size;
+
+	// scrollContainer.scrollTop((squareSize / Math.SQRT2 + window.innerWidth * 0.2 * 2 - window.innerWidth) / 2);
+	// scrollContainer.scrollLeft((squareSize * Math.SQRT2 + window.innerWidth * 0.2 * 2 - window.innerWidth) / 2);
+
 }
 
 
@@ -87,7 +90,7 @@ $(".knop-zaaien").each(function(_, knop) {
 
 
 $("farm").on("mousedown", (ev) => {
-	lastTile = ev.target;
+	let lastTile = undefined;
 	$("farm").on("mousemove", (ev) => {
 		let tile = ev.target;
 		if (tile != lastTile) {

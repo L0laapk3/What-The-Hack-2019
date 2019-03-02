@@ -17,13 +17,18 @@
 
 		<img class="bg" src="img/bg.jpg"/>
 
-		<farm-container id="farmContainer"></farm-container>
+		<farm-scroll-container id="farmScrollContainer"><farm-container id="farmContainer"></farm-container></farm-scroll-container>
+
+		<topControls>
+			<img id="avatar" src="img/farmer.svg">
+			<div id="level">6</div>
+		</topControls>
 			
 		<bottomControls>
 			<controlGroup id="mainControls">
-				<control class="knop-zaaien" data-plant="tomaat" data-snelheid="1000" data-stadia="6"><img src="img/tomaat/thumb.png"/>Zaaien</control>
+				<control class="knop-zaaien" data-plant="tomaat" data-snelheid="2000" data-stadia="6"><img src="img/tomaat/thumb.png"/>Zaaien</control>
 				<control class="knop-zaaien" data-plant="wheat" data-snelheid="5000" data-stadia="6"><img src="img/wheat/thumb.png"/>Zaaien</control>
-				<control class="knop-zaaien" data-plant="appel" data-snelheid="300" data-stadia="5"><img src="img/appel/thumb.png"/>Zaaien</control>
+				<control class="knop-zaaien" data-plant="appel" data-snelheid="10000" data-stadia="5"><img src="img/appel/thumb.png"/>Zaaien</control>
 				<control id="knop-oogsten">Oogsten</control>
 				<control id="knop-ploegen">Ploegen</control>
 				<control id="knop-bouwen">Bouwen</control>

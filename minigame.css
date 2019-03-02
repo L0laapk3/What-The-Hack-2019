@@ -1,0 +1,80 @@
+html {
+  height: 100%;
+}
+
+.game {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+}
+
+.score {
+  font-size: 500px;
+  z-index: 20;
+  font-family: arial;
+  color: #d7e4d9;
+  user-select: none;
+  width: 100%;
+  text-align: center;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: -250px;
+  transition: transform 1.5s linear;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.move {
+  transform: translateY(120vh);
+}
+
+.counter {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  font-family: arial;
+  color: red;
+  font-weight: bold;
+  padding-top: 10px;
+  font-size: 20px;
+  position: relative;
+  z-index: 9999;
+}
+
+.health-box-container{
+  display: flex;
+  flex-direction: row;
+  height: 6%;
+  margin-top: 2vh;
+}
+
+.health-box-sub-container{
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+}
+
+.healt-box-sub-container-score{
+  width: 20%;
+  margin-top: -4.5vh;
+  text-align: center;
+  font-size: 800%;
+}
+
+.uitlegScherm {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+}
+
+.uitlegVak {
+  
+}

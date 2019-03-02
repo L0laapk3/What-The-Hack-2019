@@ -11,6 +11,10 @@
 		<link rel="stylesheet" href="style.css">
 
 		<script src="jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="minigame.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  
 	</head>
 
 	<body>
@@ -20,7 +24,7 @@
 		<farm-scroll-container id="farmScrollContainer"><farm-container id="farmContainer"></farm-container></farm-scroll-container>
 
 		<topControls>
-			<img id="avatar" src="img/farmer.svg">
+			<img id="avatar" src="img/farmer.svg" onpointerdown="startGame()">
 			<div id="level">6</div>
 		</topControls>
 			
@@ -39,15 +43,51 @@
 			</controlGroup>
 		</bottomControls>
 
+    
+    <div id ="gameDiv" class="game" style="display: none">
+      <img class="bg" src="img/bg.jpg" style="z-index: 1"/>
+          <div class="health-box-container" style="z-index: 2;z-index: 2">
+          <div class="health-box-sub-container" style="margin-left: 5% ;z-index: 2">
+            
+            <div class="w3-border">
+                <div class="w3-red" id="koolhydraten" style="height:50px;width:100%;z-index: 2;font-size: 250%">Koolhydraten</div>
+            </div>
+            
+            <div class="w3-border" style="margin-top: 2vh;">
+                <div class="w3-red" id="vetten" style="height:50px;width:100%;z-index: 2;font-size: 250%">Vetten</div>
+            </div>
+            
+          </div>
+            
+          <div class="healt-box-sub-container-score" id="scoreVenster" style="z-index: 2">0</div>
+            
+          
+          <div class="health-box-sub-container" style="margin-right: 5%;z-index: 2;">
+              
+            <div class="w3-border">
+              <div class="w3-red" id="vitaminen" style="height:50px;width:100%;z-index: 2;font-size: 250%">Vitaminen</div>
+            </div>
+            
+            <div class="w3-border" style="margin-top: 2vh;">
+              <div class="w3-red" id="eiwitten" style="height:50px;width:100%;;z-index: 2;font-size: 250%">Eiwitten</div>
+            </div>
+            
+          </div>
+          </div>
+            
+      </div>
+          
+    
+      <div id ="uitlegScherm" style="display: none">
+      <img class="bg" src="img/bg.jpg" style="z-index: 1"/>
+      <div class="uitlegVak"></div>
+      
+      </div>
+
+          <script  src="minigame.js"></script>
+
+		      <script src="main.js"></script>
 
 
-
-
-
-
-		
-		<script src="main.js"></script>
-
-
-	</body>
+        </body>
 </html>

@@ -30,10 +30,13 @@ farm-background-row {
 }
 
 farm-background-tile {
-	background-image: url("img/dirt2.png");
+	background-image: url("img/grass.png");
 	width: var(--tileSize);
 	height: var(--tileSize);
 	display: inline-block;
+}
+farm-background-tile.farmland {
+	background-image: url("img/dirt2.png");
 }
 farm.outline farm-background-tile {
 	cursor: pointer;
@@ -125,7 +128,9 @@ plant img[src$="tomaat/6.png"] {
 
 
 
-plant img[src$="appel/4.png"],
-plant img[src$="appel/5.png"] {
+plant img[src$="appel/4.png"] {
     margin: 0 -19px;
+}
+plant img[src$="appel/5.png"] {
+    margin: 1px -19px;
 }

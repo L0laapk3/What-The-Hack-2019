@@ -117,6 +117,18 @@ $(".knop-zaaien").each(function(_, knop) {
 
 
 
+$("avatar profile > img").on("click", (ev) => {
+	$("foodtips").css("display", "block");
+	$("profile").addClass("Opened").css({
+		width: "58vw",
+		height: "58vw"
+	});
+
+});
+
+
+
+
 $("farm").on("mousedown", (ev) => {
 	let lastTile = undefined;
 	$("farm").on("mousemove", (ev) => {

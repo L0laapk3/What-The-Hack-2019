@@ -88,6 +88,61 @@ farm-background-tile > *:not(.isometric) {
 
 
 
+foodTips {
+	display: none;
+	width: 100%;
+	height: 100%;
+}
+foodTipsFoods {
+	display: none;
+	width: 30%;
+	height: 100%;
+	display: block;
+	border-right: solid 1vw #d93838;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+foodTipsFoods::-webkit-scrollbar { 
+    display: none; 
+}
+foodTipsFoods food {
+	position: relative;
+	display: block;
+	width: calc(100% - 6vw);
+	height: 7vw;
+	line-height: 6.45vw;
+	padding-left: 6.5vw;
+	font-weight: bolder;
+	font-size: 2.5vw;
+	text-align: center;
+	cursor: pointer;
+}
+foodTipsFoods food:last-child {
+	height: 6vw;
+}
+foodTipsFoods food:not(:last-child)::after {
+	content: "";
+	width: calc(100% + 7vw);
+	background-color: #d93838;
+	height: 1vw;
+	display: block;
+	margin-left: -7vw;
+}
+foodTipsFoods food img {
+	position: absolute;
+	left: 1vw;
+	top: .5vw;
+    max-width: 6vw;
+    max-height: 5vw;
+}
+
+
+foodTipsRight {
+	display: block;
+    width: calc(70% - 1vw);
+    height: 100%;
+    float: right;
+}
 
 
 topLeftControls {
@@ -97,18 +152,25 @@ topLeftControls {
 	margin-left: 2vw;
 }
 avatar profile {
-	width: 8vw;
-	height: 8vw;
+    width: 8vw;
+    height: 8vw;
     background-color: #ef7171;
     border-radius: 5vw;
     border: solid 1vw #d93838;
+    display: block;
+    transition: width 1s ease-in-out, height 1s ease-in-out;
+	overflow: hidden;
+    white-space: nowrap;
 }
-avatar profile img {
-	width: 8vw;
-	height: 8vw;
+avatar profile > img {
+    width: 8vw;
+    height: 8vw;
     background-color: #ef7171;
     border-radius: 5vw;
     border: solid 1vw #d93838;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 avatar #level {
 	width: 2.5vw;
@@ -117,7 +179,7 @@ avatar #level {
     border: solid 0.75vw #ffc61b;
 	background-color: #fee187;
 	position: absolute;
-	top: -1vw;
+	bottom: 7vw;
 	right: -1vw;
 	line-height: 2.6vw;
 	text-align: center;

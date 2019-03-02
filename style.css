@@ -8,6 +8,7 @@
 	-webkit-user-drag: none;
 }
 
+html,
 body {
 	height: 100vh;
 	overflow: hidden;
@@ -97,7 +98,7 @@ foodTipsFoods {
 	display: none;
 	width: 30%;
 	height: 100%;
-	display: block;
+	display: inline-block;
 	border-right: solid 1vw #d93838;
 	overflow-x: hidden;
 	overflow-y: scroll;
@@ -138,7 +139,7 @@ foodTipsFoods food img {
 
 
 foodTipsRight {
-	display: block;
+	display: inline-block;
     width: calc(70% - 1vw);
     height: 100%;
     float: right;

@@ -86,6 +86,25 @@ farm-background-tile > *:not(.isometric) {
 
 
 
+slider {
+	width: 30vw;
+	height: 2vw;
+	margin: 2.5vw auto;
+	background-color: lightgray;
+	display: block;
+	text-align: center;
+	font-weight: bolder;
+}
+slider > inner {
+	position: absolute;
+	height: 2vw;
+	background-color: limegreen;
+	display: block;
+	width: 0;
+}
+
+
+
 
 
 

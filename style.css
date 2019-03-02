@@ -179,8 +179,20 @@ foodTipsRight {
 foodTipsInfo {
 	border-bottom: solid 1vw #d93838;
 	height: 62%;
-	width: 100%;
+	width: calc(100% - 8vw);
 	display: block;
+	white-space: initial;
+	padding: 4vw;
+}
+foodTipsInfo span {
+	font-weight: bolder;
+	font-size: 2.5vw;
+}
+foodTipsInfo img {
+	max-width: 9vw;
+	max-height: 9vw;
+	display: block;
+	margin: 2.5vw 0 0.5vw 0;
 }
 foodTipsSliders {
 	height: calc(38% - 1vw);

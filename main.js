@@ -116,6 +116,10 @@ $(".knop-zaaien").each(function(_, knop) {
 
 
 
+function returnFromMinigame(score) {
+
+}
+
 
 $("avatar profile > img").on("click", (ev) => {
 	$("foodtips").css("display", "block");
@@ -123,7 +127,6 @@ $("avatar profile > img").on("click", (ev) => {
 		width: "58vw",
 		height: "58vw"
 	});
-
 });
 
 
@@ -257,4 +260,14 @@ $("#knop-bouwen").on("click", (ev) => {
 
 	openAnnuleerControls();
 
+});
+
+
+
+
+$("foodTipsFoods food").on("click", (ev) => {
+	window.a = $(ev.target).closest("food");
+	let soort = $(ev.target).closest("food").text().trim().toLowerCase();
+	let varia = weetjes[soort];
+	$("foodtipsinfo").html("<span>" + soort + "</span><br><br>" + varia.text);
 });

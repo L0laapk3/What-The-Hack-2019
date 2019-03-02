@@ -19,23 +19,32 @@
 
 		<farm-scroll-container id="farmScrollContainer"><farm-container id="farmContainer"></farm-container></farm-scroll-container>
 
-		<topControls>
-			<img id="avatar" src="img/farmer.svg">
-			<div id="level">6</div>
-		</topControls>
+		<topLeftControls>
+			<avatar>
+				<profile>
+					<img src="img/farmer.svg">
+				</infobox>
+				<div id="level">6</div>
+			</avatar>
+		</topLeftControls>
+		<topRightControls>
+			<coins>
+				<div><span>340€</span></div>
+			</coins>
+		</topRightControls>
 			
 		<bottomControls>
 			<controlGroup id="mainControls">
-				<control class="knop-zaaien" data-plant="tomaat" data-snelheid="2000" data-stadia="6"><img src="img/tomaat/thumb.png"/>Zaaien</control>
-				<control class="knop-zaaien" data-plant="wheat" data-snelheid="5000" data-stadia="6"><img src="img/wheat/thumb.png"/>Zaaien</control>
-				<control class="knop-zaaien" data-plant="appel" data-snelheid="10000" data-stadia="5"><img src="img/appel/thumb.png"/>Zaaien</control>
-				<control id="knop-oogsten">Oogsten</control>
-				<control id="knop-ploegen">Ploegen</control>
-				<control id="knop-bouwen">Bouwen</control>
-				<control id="knop-slopen">Slopen</control>
+				<control class="knop-zaaien" data-plant="tomaat" data-snelheid="2000" data-stadia="6" data-winst="2"><div><img src="img/tomaat/thumb.png"/></div>Zaaien</control>
+				<control class="knop-zaaien" data-plant="wheat" data-snelheid="5000" data-stadia="6" data-winst="5"><div><img src="img/wheat/thumb.png"/></div>Zaaien</control>
+				<control class="knop-zaaien" data-plant="appel" data-snelheid="10000" data-stadia="5" data-winst="20" data-ongrass="1"><div><img src="img/appel/thumb.png"/></div>Zaaien</control>
+				<control id="knop-oogsten"><div><img src="img/sikkel.png"/></div>Oogsten</control>
+				<control id="knop-ploegen"><div><img src="img/hoe.png"/></div>Ploegen</control>
+				<control id="knop-bouwen"><div><img src="img/schuur.png"/></div>Bouwen</control>
+				<control id="knop-slopen"><div><img src="img/demolish.svg"/></div>Slopen</control>
 			</controlGroup>
 			<controlGroup id="annuleerControls" style="display: none">
-				<control id="knop-annuleer">Terug</control>
+				<control id="knop-annuleer"><div><img src="img/terug.png"/></div>Terug</control>
 			</controlGroup>
 		</bottomControls>
 

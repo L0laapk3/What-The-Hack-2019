@@ -100,11 +100,12 @@ slider > span {
 	height: 2vw;
 	text-align: center;
 	font-weight: bolder;
+	line-height: 2vw;
 }
 slider > inner {
 	position: absolute;
 	height: 2vw;
-	background-color: limegreen;
+	background-color: #ffc61b;
 	display: block;
 	width: 0;
 }
@@ -184,6 +185,7 @@ foodTipsInfo {
 	white-space: initial;
 	padding: 4vw;
 	overflow-y: auto;
+	overflow-x: hidden;
 }
 foodTipsInfo span {
 	font-weight: bolder;
@@ -229,6 +231,17 @@ topLeftControls {
 	top: 0;
 	margin-top: 2vw;
 	margin-left: 2vw;
+	cursor: default;
+}
+topleftcontrolsReturn.enabled {
+	width: 100vw;
+	height: 100vh;
+	background-color: #00000040;
+    display: block;
+    top: 0;
+    position: absolute;
+	cursor: pointer;
+	z-index: 9;
 }
 avatar profile {
     width: 8vw;

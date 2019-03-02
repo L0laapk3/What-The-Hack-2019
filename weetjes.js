@@ -22,14 +22,14 @@ let weetjes = {
 			"<img src='img/lamp.png'/>Hoewel de tomaat het meest voorkomt in de rode kleur, kan je ze terugvinden in een heleboel andere " +
 			"kleuren waaronder groen, geel, oranje, roze, zwart, bruin, wit en paars",
     info: {
-      water: 95,
-      eiwitten: 1,
-			vetten: 0.2,
-			koolhydraten: 3.9,
-      vitamineA: 100,
-      vitamineC: 100,
-      vitaminekrisisgqyD: 0,
-      calcium: 100
+		water: 95,
+		eiwitten: 1,
+		vetten: 0.2,
+		koolhydraten: 3.9,
+		vitamineA: 100,
+		vitamineC: 100,
+		vitaminekrisisgqyD: 0,
+		calcium: 100
 		}
 			
 	},

@@ -118,7 +118,19 @@ $(".knop-zaaien").each(function(_, knop) {
 
 
 function popupBackdrop() {
-
+	$("topleftcontrolsReturn").addClass("enabled").on("click", (ev) => {
+		if (ev.target != $("topleftcontrolsReturn")[0])
+			return;
+		console.log("tof");
+		$("topleftcontrolsReturn").removeClass("enabled").off("click");
+		$("profile").css({width: "", height: ""});
+		$("foodTipsInfo").css("overflowY", "hidden");
+		setTimeout(() => {
+			$("profile").removeClass("opened");
+			$("foodtips").css("display", "")
+			$("foodTipsInfo").css("overflowY", "auto");
+		}, 1000);
+	});
 }
 
 
@@ -139,7 +151,7 @@ function returnFromMinigame(score) {
 	});
 	$("minigameReturn").css("display", "block").text("Je hebt " + score * 10 + " xp verdiend. Proficiat!");
 	setTimeout(() => {
-		$("profile").css("width", "");
+		$("profile").css({width: "", height: ""});
 		setTimeout(() => {
 			$("profile").removeClass("opened");
 			$("minigameReturn").css("display", "")
@@ -157,6 +169,10 @@ $("avatar profile > img").on("click", (ev) => {
 		height: "58vw"
 	});
 	$("foodtips").css("display", "block");
+	$("foodTipsInfo").css("overflowY", "hidden");
+	setTimeout(() => {
+		$("foodTipsInfo").css("overflowY", "auto");
+	}, 1000);
 	
 	popupBackdrop();
 });
@@ -302,4 +318,8 @@ $("foodTipsFoods food").on("click", (ev) => {
 	let soort = $(ev.target).closest("food").text().trim().toLowerCase();
 	let varia = weetjes[soort];
 	$("foodtipsinfo").html("<span>" + soort + "</span><br><br>" + varia.text);
+
+	for (let naam in varia.info) {
+		$("foodTipsSliders slider[data-name='" + naam + "'] inner").css("width", varia.info[naam] + "%");
+	}
 });

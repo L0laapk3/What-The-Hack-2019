@@ -81,6 +81,12 @@ var voedingsmiddelen = {
     vitaminen: 2,
     eiwitten: 12
   },
+  cola:{
+    koolhydraten: -100,
+    vetten: -100,
+    vitaminen: -100,
+    eiwitten: -100    
+  }
 };
 
 
@@ -94,7 +100,7 @@ function dropBox(){
   }
   var length = random(100, ($(".game").width() - 100));
   var velocity = random(850, 10000);
-  var size = random(150, 250);
+  var size = random(120, 200);
   var thisBox = $("<div/>", {
     class: "box",
     style:  "width:" +size+ "px; height:"+size+"px; left:" + length+  "px; transition: transform " +velocity+ "ms linear;"
@@ -157,25 +163,22 @@ function removeHealt(voedingsstof,damage){
   console.log("healtBegin in addHEalt")
   console.log(healtBegin);
   if (((healtBegin-healtNu)/healtBegin) >= 0.25 && ((healtBegin-healtNu)/healtBegin) <= 0.75) {
-    $("#"+voedingsstof).addClass('w3-green');
-    $("#"+voedingsstof).removeClass('w3-red');
+    $("#"+voedingsstof).css("background-color", "limegreen");
   } else {
-    $("#"+voedingsstof).addClass('w3-red');
-    $("#"+voedingsstof).removeClass('w3-green');
+    $("#"+voedingsstof).css("background-color", "red");
   }
   $("#"+voedingsstof).css( "width", healtNu);
   if ((healtNu == healtBegin || healtNu <=0) && goGame) {
     goGame = false;
-    alert("Je score is: " + score + "\n" + "je krijgt " + score*10 + " exp, proficiat!");
     $("#gameDiv").hide();
-    score = 0;
-    
-    $("#scoreVenster").html(score);
     
     var sleutels = Object.keys(voedingsstoffenVerliezen)
     for (i = 0; i < sleutels.length; i++) { 
       $("#"+sleutels[i]).css( "width", healtBegin)
     }
+    
+    $(".box").hide();
+    returnFromMinigame(score);
   }
 }
 
@@ -192,6 +195,7 @@ function startGame(){
   $("#gameDiv").show();
   goGame = true;
   score = 0;
+  $("#scoreVenster").html(score);
   for (i = 0; i < 10; i++) { 
     dropBox();
   }

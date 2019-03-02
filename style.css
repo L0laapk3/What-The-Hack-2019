@@ -92,9 +92,14 @@ slider {
 	margin: 2.5vw auto;
 	background-color: lightgray;
 	display: block;
+	position: relative;
+}
+slider > span {
+	position: absolute;
+	width: 100%;
+	height: 2vw;
 	text-align: center;
 	font-weight: bolder;
-	position: relative;
 }
 slider > inner {
 	position: absolute;
@@ -175,12 +180,12 @@ foodTipsInfo {
 	border-bottom: solid 1vw #d93838;
 	height: 62%;
 	width: 100%;
-	display: inline-block;
+	display: block;
 }
 foodTipsSliders {
 	height: calc(38% - 1vw);
 	width: 100%;
-	display: inline-block;
+	display: block;
 }
 
 

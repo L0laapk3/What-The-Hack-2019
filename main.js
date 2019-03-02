@@ -1,6 +1,6 @@
 function loadFarm() {
-	let width = 10;
-	let height = 10;
+	let width = 6;
+	let height = 6;
 
 
 

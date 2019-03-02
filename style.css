@@ -1,5 +1,5 @@
 :root {
-	--tileSize: 150px;
+	--tileSize: 6vw;
 }
 
 * {
@@ -35,7 +35,7 @@ farm-background-tile {
 }
 farm.outline farm-background-tile::after {
 	content: "";
-	border: solid black 1px;
+	border: solid black 0.1vw;
     width: 100%;
     height: 100%;
     display: block;
@@ -43,7 +43,7 @@ farm.outline farm-background-tile::after {
 
 
 farm.outline farm-background-tile:hover::after {
-	border-width: 3px;
+	border-width: 0.3vw;
 }
 
 
@@ -53,21 +53,27 @@ farm.outline farm-background-tile:hover::after {
 
 bottomControls {
 	width: 100%;
-	height: 200px;
+	height: 8vw;
 	position: absolute;
 	bottom: 0;
+	font-size: 1vw;
+	user-select: none; 
 }
 
 control:first-child {
-	margin: 25px;
+	margin: 1vw;
 }
 control {
-	margin: 25px 25px 25px 0;
-	width: 150px;
-	height: 150px;
+	margin: 1vw 1vw 1vw 0;
+	width: 6vw;
+	height: 6vw;
 	display: inline-block;
 	background-color: lightgrey;
-	border: 10px solid grey;
-	border-radius: 25px;
+	border: 0.5vw solid grey;
+	border-radius: 1vw;
 	box-sizing: border-box;
+	text-align: center;
+	vertical-align: text-bottom;
+	line-height: 9vw;
+	cursor: pointer;
 }

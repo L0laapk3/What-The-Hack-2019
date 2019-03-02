@@ -1,0 +1,1 @@
+Its best to open ipad.html due to time constraints only developed with 1 screen ratio in mind.

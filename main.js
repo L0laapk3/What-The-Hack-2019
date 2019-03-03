@@ -1,5 +1,5 @@
 function loadFarm() {
-	let size = 18;
+	let size = 10;
 
 
 

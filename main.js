@@ -3,6 +3,8 @@
 if (window == window.top && !navigator.userAgent.match(/Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i))
 	window.location.href = "ipad.html";
 
+if (window.screen.availHeight > window.screen.availWidth)
+	alert("This website is best viewed in landscape mode.");
 
 
 function loadFarm() {

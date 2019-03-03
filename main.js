@@ -1,3 +1,10 @@
+
+
+if (window == window.top && !navigator.userAgent.match(/Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i))
+	window.location.href = "ipad.html";
+
+
+
 function loadFarm() {
 	let size = 10;
 
